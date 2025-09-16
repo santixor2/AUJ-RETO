@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
+    id("dagger.hilt.android.plugin")
+    kotlin("plugin.serialization") version "2.0.0"
 }
 
 android {
@@ -12,8 +15,8 @@ android {
         applicationId = "com.santig.auj_reto"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -56,4 +59,12 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Hilt
+    implementation(libs.hilt.android.v250)
+    ksp(libs.hilt.android.compiler.v250)
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    // Navigation Compose
+    implementation("androidx.navigation:navigation-compose:2.6.0")
 }

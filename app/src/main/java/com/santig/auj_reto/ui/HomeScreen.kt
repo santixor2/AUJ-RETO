@@ -53,7 +53,7 @@ fun HomeScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TitleHome()
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             TaskCard()
         }
         AddTask(modifier = Modifier.align(Alignment.BottomEnd))
