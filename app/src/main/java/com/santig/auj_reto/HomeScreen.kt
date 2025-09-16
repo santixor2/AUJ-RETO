@@ -1,4 +1,4 @@
-package com.santig.auj_reto.ui
+package com.santig.auj_reto
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
