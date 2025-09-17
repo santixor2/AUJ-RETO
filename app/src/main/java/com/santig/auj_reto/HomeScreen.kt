@@ -1,5 +1,6 @@
 package com.santig.auj_reto
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,10 +14,13 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
@@ -24,10 +28,9 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,9 +40,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.santig.auj_reto.navigation.Home
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navController: NavHostController,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
+    val task by viewModel.tasks.collectAsState()
+
+    LaunchedEffect(Unit){
+        viewModel.loadTasks()
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -54,16 +68,42 @@ fun HomeScreen() {
         ) {
             TitleHome()
             Spacer(modifier = Modifier.height(16.dp))
-            TaskCard()
+            if(task.isEmpty()){
+                EmptyTask()
+            }
+            LazyColumn{
+                items(task){ tasks ->
+                    TaskCard(
+                        task = tasks,
+                        onCheckChanged = {
+                            viewModel.markTaskCompleted(taskId = it)
+                        }
+                    )
+                }
+            }
         }
-        AddTask(modifier = Modifier.align(Alignment.BottomEnd))
+        AddTask(
+            modifier = Modifier.align(Alignment.BottomEnd),
+            goTo = {navController.navigate(Home.TaskScreen.route)}
+        )
     }
 }
 
 @Composable
-fun AddTask(modifier: Modifier) {
+private fun EmptyTask() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "SIN TAREAS", fontSize = 18.sp)
+    }
+}
+
+@Composable
+fun AddTask(modifier: Modifier,goTo: () -> Unit) {
     FloatingActionButton(
-        onClick = {},
+        onClick = {goTo()},
         containerColor = Color.Blue,
         modifier = modifier
             .padding(20.dp)
@@ -91,15 +131,17 @@ fun TitleHome() {
 }
 
 @Composable
-fun TaskCard() {
-    var checkedState by remember { mutableStateOf(false) }
+fun TaskCard(
+    task: Task,
+    onCheckChanged: (String) -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(horizontal = 8.dp, vertical = 6.dp),
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.LightGray),
+        colors = CardDefaults.cardColors(containerColor = Color.LightGray.copy(0.5f)),
         onClick = {}
     ) {
         Row(
@@ -111,7 +153,7 @@ fun TaskCard() {
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "Titulo",
+                    text = "Titulo : ${task.title}",
                     fontSize = 14.sp,
                     color = Color.Black,
                     modifier = Modifier
@@ -120,7 +162,7 @@ fun TaskCard() {
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Descripcion",
+                    text = "Descripcion : ${task.description}",
                     fontSize = 14.sp,
                     color = Color.Black,
                     modifier = Modifier
@@ -128,10 +170,18 @@ fun TaskCard() {
                         .padding(start = 4.dp, top = 2.dp)
                 )
             }
-            Checkbox(
-                checked = checkedState,
-                onCheckedChange = { checkedState = it }
-            )
+            if (!task.completed){
+                Checkbox(
+                    checked = task.completed,
+                    onCheckedChange = {onCheckChanged(task.id)}
+                )
+            }else{
+                Icon(
+                    imageVector = Icons.Filled.CheckCircle,
+                    contentDescription = "",
+                    tint = Color.Green
+                )
+            }
         }
     }
 }
@@ -139,5 +189,5 @@ fun TaskCard() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewHome() {
-    HomeScreen()
+//    HomeScreen()
 }
