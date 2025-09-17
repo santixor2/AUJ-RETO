@@ -21,7 +21,6 @@ class HomeViewModel @Inject constructor() : ViewModel() {
 
     fun uiState(uiStates: UiState) {
         _uiState.value = uiState.value.copy(
-            status = uiStates.status,
             loading = uiStates.loading,
             enabled = uiStates.enabled
         )
