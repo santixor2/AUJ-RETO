@@ -1,4 +1,4 @@
-package com.santig.auj_reto
+package com.santig.auj_reto.view.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,9 +12,13 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.santig.auj_reto.data.Task
+import com.santig.auj_reto.domain.presentation.HomeViewModel
+import com.santig.auj_reto.domain.states.UiState
 
 @Composable
 fun AddTaskScreen(
@@ -59,6 +66,8 @@ fun AddTaskScreen(
             },
             uiState = uiState
         )
+        Spacer(modifier = Modifier.height(42.dp))
+        IconBack(back = {navController.popBackStack()})
     }
 }
 
@@ -156,5 +165,16 @@ fun AddTaskButton(
                 color = Color.White
             )
         }
+    }
+}
+@Composable
+fun IconBack(back : () -> Unit){
+    IconButton(
+        onClick = {back()},
+        modifier = Modifier.padding(top = 8.dp, start = 4.dp)
+    ){
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = ""
+        )
     }
 }

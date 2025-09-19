@@ -1,4 +1,4 @@
-package com.santig.auj_reto.navigation
+package com.santig.auj_reto.view.navigation
 
 sealed class Home(val route : String){
     data object HomeScreen : Home(

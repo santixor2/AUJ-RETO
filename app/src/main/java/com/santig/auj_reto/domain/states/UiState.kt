@@ -1,4 +1,4 @@
-package com.santig.auj_reto
+package com.santig.auj_reto.domain.states
 
 data class UiState(
     var loading : Boolean = false,

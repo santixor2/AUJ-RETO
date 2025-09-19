@@ -1,4 +1,4 @@
-package com.santig.auj_reto.navigation
+package com.santig.auj_reto.view.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

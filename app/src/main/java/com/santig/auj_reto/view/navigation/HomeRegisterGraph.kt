@@ -1,10 +1,10 @@
-package com.santig.auj_reto.navigation
+package com.santig.auj_reto.view.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.santig.auj_reto.AddTaskScreen
-import com.santig.auj_reto.HomeScreen
+import com.santig.auj_reto.view.ui.AddTaskScreen
+import com.santig.auj_reto.view.ui.HomeScreen
 
 fun NavGraphBuilder.HomeRegisterGraph(
     navController: NavHostController

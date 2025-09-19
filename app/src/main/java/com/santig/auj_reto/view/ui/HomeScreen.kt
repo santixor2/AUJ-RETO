@@ -1,6 +1,5 @@
-package com.santig.auj_reto
+package com.santig.auj_reto.view.ui
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,11 +9,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -26,7 +23,6 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -45,7 +41,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.santig.auj_reto.navigation.Home
+import com.santig.auj_reto.data.Task
+import com.santig.auj_reto.domain.presentation.HomeViewModel
+import com.santig.auj_reto.view.navigation.Home
 
 @Composable
 fun HomeScreen(
@@ -100,8 +98,6 @@ private fun EmptyTask() {
         verticalArrangement = Arrangement.Center
     ) {
         Text(text = "SIN TAREAS", fontSize = 18.sp)
-        Spacer(modifier = Modifier.height(8.dp))
-        CircularProgressIndicator(color = Color.Gray, modifier = Modifier.heightIn(max = 25.dp).widthIn(max = 30.dp))
     }
 }
 
