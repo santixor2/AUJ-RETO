@@ -91,13 +91,19 @@ fun HomeScreen(
 }
 
 @Composable
-private fun EmptyTask() {
+fun EmptyTask() {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "SIN TAREAS", fontSize = 18.sp)
+        Text(
+            text = "Agrega tu primer tarea",
+            fontSize = 15.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+            fontWeight = FontWeight.SemiBold
+        )
     }
 }
 
