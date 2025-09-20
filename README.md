@@ -4,6 +4,7 @@
 
 ## CAPTURAS DE PANTALLA
 
+![Image](https://github.com/user-attachments/assets/e6bf3d94-e27f-4da5-b450-f60e828e9bef)
 
 ## Como Compilar
 
