@@ -19,3 +19,5 @@
 - Inyeccion de dependencias : Dagger Hilt (usando KSP para mejorar el rendimiento)
 - MVVM
 - Navegacion : Android Jetpack Navigation Component
+- jetpack compose
+- sharedPreferences para persistencia local
