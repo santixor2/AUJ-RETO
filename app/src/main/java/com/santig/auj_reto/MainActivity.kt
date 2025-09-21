@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.santig.auj_reto.view.navigation.AppNavigation
 import com.santig.auj_reto.ui.theme.AUJ_RETOTheme
-import com.santig.auj_reto.utils.TaskManager
+import com.santig.auj_reto.data.TaskManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

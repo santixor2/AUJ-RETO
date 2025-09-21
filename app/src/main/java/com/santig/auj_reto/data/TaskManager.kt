@@ -1,10 +1,10 @@
-package com.santig.auj_reto.utils
+package com.santig.auj_reto.data
 
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.santig.auj_reto.data.Task
+import com.santig.auj_reto.domain.Task
 import java.util.UUID
 
 object TaskManager {

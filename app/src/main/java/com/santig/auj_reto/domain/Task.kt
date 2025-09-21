@@ -1,4 +1,4 @@
-package com.santig.auj_reto.data
+package com.santig.auj_reto.domain
 
 data class Task(
     var title : String = "",

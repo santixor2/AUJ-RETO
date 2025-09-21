@@ -41,8 +41,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.santig.auj_reto.data.Task
-import com.santig.auj_reto.domain.presentation.HomeViewModel
+import com.santig.auj_reto.domain.Task
+import com.santig.auj_reto.view.presentation.HomeViewModel
 import com.santig.auj_reto.view.navigation.Home
 
 @Composable

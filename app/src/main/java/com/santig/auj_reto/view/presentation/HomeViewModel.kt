@@ -1,10 +1,10 @@
-package com.santig.auj_reto.domain.presentation
+package com.santig.auj_reto.view.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.santig.auj_reto.utils.TaskManager
-import com.santig.auj_reto.data.Task
-import com.santig.auj_reto.domain.states.UiState
+import com.santig.auj_reto.data.TaskManager
+import com.santig.auj_reto.domain.Task
+import com.santig.auj_reto.view.states.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
